@@ -1,0 +1,9 @@
+<script type="text/x-tmpl" id="linktalker-pits">
+    <div class="linktalker-pits">
+        {% o.pits.map(function(pit){ %}
+            <div class="linktalker-pit" style="top:{%=pit.position.top%};left:{%=pit.position.left%}">
+                <img src="{%=pit.user.avatar%}"></img>
+            </div>
+        {% }); %}
+    </div>
+</script>

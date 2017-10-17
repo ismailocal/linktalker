@@ -1,28 +1,26 @@
 <script type="text/x-tmpl" id="linktalker-posts">
-    <div class="linktalker{%=o.new ? ' linktalker-new' : ''%}" style="top:{%=o.top%};left:{%=o.left%}">
-        <div class="linktalker-posts">
-            {% o.posts.map(function(post){ %}
-            <div class="linktalker-post linktalker-clearfix">
-                <div class="linktalker-post-left">
-                    <img src="{%=post.user.avatar%}"></img>
-                </div>
-                <div class="linktalker-post-right">
-                    <div class="linktalker-post-top linktalker-clearfix">{%=post.user.username%} <span class="linktalker-post-time">3 min ago</span></div>
-                    <div class="linktalker-post-body">{%=post.content%}</div>
+    <div class="linktalker-posts" style="top:{%=o.position.top%};left:{%=o.position.left%}">
+        {% o.posts.map(function(post){ %}
+        <div class="linktalker-post linktalker-clearfix">
+            <div class="linktalker-post-left">
+                <img src="{%=post.user.avatar%}"></img>
+            </div>
+            <div class="linktalker-post-right">
+                <div class="linktalker-post-top linktalker-clearfix">{%=post.user.username%} <span class="linktalker-post-time">3 min ago</span></div>
+                <div class="linktalker-post-body">{%=post.content%}</div>
+            </div>
+        </div>
+        {% }); %}
+        <div class="linktalker-post linktalker-post-new linktalker-clearfix">
+            <div class="linktalker-post-left">
+                <img src="{%=o.user.avatar%}"></img>
+            </div>
+            <div class="linktalker-post-right">
+                <div class="linktalker-post-top linktalker-clearfix">{%=o.user.username%} <span class="linktalker-post-time">now</span></div>
+                <div class="linktalker-post-body" contenteditable="true" data-placeholder="Your post here...">{%=o.content%}</div>
                 </div>
             </div>
-            {% }); %}
-            <div class="linktalker-post linktalker-post-new linktalker-clearfix">
-                <div class="linktalker-post-left">
-                    <img src="{%=o.user.avatar%}"></img>
-                </div>
-                <div class="linktalker-post-right">
-                    <div class="linktalker-post-top linktalker-clearfix">{%=o.user.username%} <span class="linktalker-post-time">now</span></div>
-                    <div class="linktalker-post-body" contenteditable="true" data-placeholder="Your post here...">{%=o.content%}</div>
-                    </div>
-                </div>
-                <button class="linktalker-submit-button">Send</button>
-            </div>
+            <button class="linktalker-submit-button">Send</button>
         </div>
     </div>
 </script>

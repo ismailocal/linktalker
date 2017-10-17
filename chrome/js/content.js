@@ -10,74 +10,113 @@ app
             var self = this;
             self.window = $(window);
 
-            template.gets([
-                'post/tmpl/posts',
-//                'post/post'
-            ]);
+//            template.get([
+//                'post/tmpl/posts',
+//                'post/tmpl/posts-pit',
+//            ]);
 
-            chrome.get('user', function (user) {
+//                            posts: [{
+//                                    user: {
+//                                        username: 'ismailocal',
+//                                        avatar: user.avatar
+//                                    },
+//                                    content: 'This is the default welcome page used to test the correct operation of the Apache2 server after installation on Ubuntu systems. It is based on the equivalent page on Debian, from which the Ubuntu Apache packaging is derived.'
+//                                }, {
+//                                    user: {
+//                                        username: 'matthomes',
+//                                        avatar: 'https://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm'
+//                                    },
+//                                    content: 'If you are a normal user of this web site and don\'t know what this page is about, this probably means that the site is currently unavailable due to maintenance. If the problem persists, please contact the site\'s administrator.'
+//                                }],
 
-                self.window.on('click', function (e) {
-                    e.preventDefault();
+            template.get('post/tmpl/linktalker', function () {
 
-                    var linktalkerNew = $('body').find('.linktalker-new')
-                    var linktalkerPostNew = linktalkerNew.find('.linktalker-post-new .linktalker-post-body');
-                    var linktalkerPostNewHtml = linktalkerPostNew.text() || '';
-                    linktalkerNew.remove();
+                template.append('body', 'linktalker');
 
-                    template.append('body', 'linktalker-posts', {
-                        new: true,
-                        top: e.clientY - 30 + 'px',
-                        left: e.clientX - 30 + 'px',
-                        posts: [{
-                                user: {
-                                    username: 'ismailocal',
-                                    avatar: user.avatar
+                chrome.get('user', function (user) {
+
+                    template.get('post/tmpl/pits', function () {
+                        var pits = [{
+                                position: {
+                                    left: '100px',
+                                    top: '300px'
                                 },
-                                content: 'This is the default welcome page used to test the correct operation of the Apache2 server after installation on Ubuntu systems. It is based on the equivalent page on Debian, from which the Ubuntu Apache packaging is derived.'
-                            },{
-                                user: {
-                                    username: 'matthomes',
-                                    avatar: 'https://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm'
+                                user: user
+                            }, {
+                                position: {
+                                    left: '200px',
+                                    top: '200px'
                                 },
-                                content: 'If you are a normal user of this web site and don\'t know what this page is about, this probably means that the site is currently unavailable due to maintenance. If the problem persists, please contact the site\'s administrator.'
-                            }],
-                        user: user,
-                        content: linktalkerPostNewHtml
+                                user: user
+                            }, {
+                                position: {
+                                    left: '500px',
+                                    top: '600px'
+                                },
+                                user: user
+                            }, {
+                                position: {
+                                    left: '1200px',
+                                    top: '400px'
+                                },
+                                user: user
+                            }];
+
+                        template.append('.linktalker', 'linktalker-pits', {
+                            pits: pits
+                        });
+
+                        template.get('post/tmpl/posts', function () {
+                            $('.linktalker-pit').on('click', function (e) {
+                                var top = $(this).css('top');
+                                var left = $(this).css('left');
+                                template.append('.linktalker-pits', 'linktalker-posts', {
+                                    position: {
+                                        top: top,
+                                        left: left
+                                    },
+                                    posts: [{
+                                            user: {
+                                                username: 'ismailocal',
+                                                avatar: user.avatar
+                                            },
+                                            content: 'This is the default welcome page used to test the correct operation of the Apache2 server after installation on Ubuntu systems. It is based on the equivalent page on Debian, from which the Ubuntu Apache packaging is derived.'
+                                        }, {
+                                            user: {
+                                                username: 'matthomes',
+                                                avatar: 'https://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm'
+                                            },
+                                            content: 'If you are a normal user of this web site and don\'t know what this page is about, this probably means that the site is currently unavailable due to maintenance. If the problem persists, please contact the site\'s administrator.'
+                                        }],
+                                    user: user
+                                });
+                            });
+                        });
                     });
 
-                    $('body').find('.linktalker').off('click').on('click', function (e) {
-                        e.stopPropagation();
+                    template.get('post/tmpl/post-new', function () {
+                        $('body').on('click', function (e) {
+                            e.preventDefault();
+
+                            var linktalkerNew = $('.linktalker').find('.linktalker-new')
+                            var linktalkerPostNew = linktalkerNew.find('.linktalker-post-new .linktalker-post-body');
+                            var linktalkerPostNewHtml = linktalkerPostNew.text() || '';
+                            linktalkerNew.remove();
+
+                            template.append('.linktalker', 'linktalker-post-new', {
+                                position: {
+                                    top: e.clientY - 30 + 'px',
+                                    left: e.clientX - 30 + 'px'
+                                },
+                                user: user,
+                                content: linktalkerPostNewHtml
+                            });
+                        });
+
+                        $('body').on('click', '.linktalker', function (e) {
+                            e.stopPropagation();
+                        });
                     });
-
-//                    template.get('post/posts', function (html) {
-//                        template.append($('body'), html, {
-//                            top: e.clientY - 24 + 'px',
-//                            left: e.clientX + 44 + 'px'
-//                        });
-//
-//                        template.get('post/post', function (html) {
-//                            posts = posts.map(function (post) {
-//                                return template.prepare(html, post);
-//                            });
-//
-//                            template.render(self.container, 'posts', posts.join(''));
-//                        });
-//
-//                        $('body').find('.linktalker').off('click').on('click', function (e) {
-//                            e.stopPropagation();
-//                        });
-//                    });
-
-
-
-//                        template.append(self.container, html, {
-//                            top: e.clientY - 24 + 'px',
-//                            left: e.clientX + 44 + 'px',
-//                            avatar: user.avatar,
-//                            post: linktalkerPostNewHtml
-//                        });
-
                 });
             });
         });

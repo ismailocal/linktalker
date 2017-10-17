@@ -13,12 +13,11 @@ app.controller('template').define(function () {
 
     $('body').append(self.wrapperTmpl);
 
-    self.gets = function (files) {
-        files.map(function (file) {
-            $.get(chrome.extension.getURL('/html/' + file + '.html'), function (html) {
-                self.templates[file] = html;
-                self.wrapperTmpl.append(self.templates[file]);
-            });
+    self.get = function (file, callback) {
+        $.get(chrome.extension.getURL('/html/' + file + '.html'), function (html) {
+            self.templates[file] = html;
+            self.wrapperTmpl.append(self.templates[file]);
+            callback();
         });
     };
 

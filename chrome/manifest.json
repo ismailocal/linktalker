@@ -62,11 +62,12 @@
                 "/js/content.js"
             ],
             "css": [
-                "css/content.css"
+                "css/posts.css",
+                "css/pits.css"
             ]
         }
     ],
     "web_accessible_resources": [
-        "html/post/*.html"
+        "html/post/*"
     ]
 }
