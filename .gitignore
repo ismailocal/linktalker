@@ -1,0 +1,6 @@
+/vendor
+/logs
+/cache
+/src/settings.php
+error.log
+access.log

@@ -1,0 +1,35 @@
+paths:
+    migrations: %%PHINX_CONFIG_DIR%%/system/Migration
+    seeds: %%PHINX_CONFIG_DIR%%/system/Seed
+
+environments:
+    default_migration_table: migration
+    default_database: production
+    production:
+        adapter: mysql
+        host: localhost
+        name: linktalker
+        user: root
+        pass: '1234'
+        port: 3306
+        charset: utf8
+
+    development:
+        adapter: mysql
+        host: localhost
+        name: development_db
+        user: root
+        pass: ''
+        port: 3306
+        charset: utf8
+
+    testing:
+        adapter: mysql
+        host: localhost
+        name: testing_db
+        user: root
+        pass: ''
+        port: 3306
+        charset: utf8
+
+version_order: creation

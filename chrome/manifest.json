@@ -1,0 +1,72 @@
+{
+    "name": "LinkTalker",
+    "manifest_version": 2,
+    "version": "1.0.0",
+    "description": "Link talker",
+    "author": "İsmail Öcal",
+    "permissions": [
+        "storage", "tabs"
+    ],
+    "icons": {
+        "16": "icon/icon16.png",
+        "48": "icon/icon48.png",
+        "128": "icon/icon128.png"
+    },
+    "browser_action": {
+        "default_title": "My Bookmarks",
+        "default_icon": "icon/icon.png",
+        "default_popup": "html/popup.html"
+    },
+    "options_page": "html/options.html",
+    "homepage_url": "http://linktalker.com/",
+    "background": {
+        "scripts": [
+            "/plugin/jquery-3.2.1.min.js",
+            "/plugin/kube-6.5.2/dist/js/kube.min.js",
+            "/plugin/tmpl/tmpl.min.js",
+            "/js/io/io.js",
+            "/js/app.js",
+            "/js/io/config.js",
+            "/js/io/console.js",
+            "/js/io/loading.js",
+            "/js/io/event.js",
+            "/js/io/storage.js",
+            "/js/io/template.js",
+            "/js/event/commonEvent.js",
+            "/js/io/api.js",
+            "/js/io/chrome.js",
+            "/js/event/userEvent.js",
+            "/js/background.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "/plugin/jquery-3.2.1.min.js",
+                "/plugin/kube-6.5.2/dist/js/kube.min.js",
+                "/plugin/tmpl/tmpl.min.js",
+                "/js/io/io.js",
+                "/js/app.js",
+                "/js/io/config.js",
+                "/js/io/console.js",
+                "/js/io/loading.js",
+                "/js/io/event.js",
+                "/js/io/storage.js",
+                "/js/io/template.js",
+                "/js/event/commonEvent.js",
+                "/js/io/api.js",
+                "/js/io/chrome.js",
+                "/js/event/userEvent.js",
+                "/js/content.js"
+            ],
+            "css": [
+                "css/content.css"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "html/post/*.html"
+    ]
+}

@@ -1,0 +1,79 @@
+.linktalker-clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.linktalker{
+    position:fixed;
+    z-index:999999;
+    width:275px;
+    text-align: left;
+    font-size:13px;
+    line-height: 17px;
+}
+
+.linktalker *{
+    outline: none;
+}
+
+.linktalker-posts{
+    float:left;
+    width:275px;
+    background-color:#fff;
+    box-shadow:0px 1px 15px 0px rgba(50, 50, 50, 1);
+}
+
+.linktalker-post{
+    position: relative;
+    padding:10px 10px;
+}
+
+.linktalker-post + .linktalker-post{
+    border-top:1px solid #f1f1f1;
+}
+
+.linktalker-post .linktalker-post-left{
+    width:40px;
+    height:40px;
+    float:left;
+    margin-right:10px;
+}
+
+.linktalker-post .linktalker-post-left img{
+    width:100%;
+}
+
+.linktalker-post .linktalker-post-right{
+    float:right;
+    width:205px;
+}
+
+.linktalker-post .linktalker-post-right .linktalker-post-top{
+    color:#666;
+    font-weight: bold;
+}
+
+.linktalker-post .linktalker-post-right .linktalker-post-top .linktalker-post-time{
+    float:right;
+    font-weight: normal;
+    font-size:11px;
+}
+
+[contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    display: block; /* For Firefox */
+    cursor:text;
+}
+
+.linktalker-submit-button{
+    width:100%;
+    border:0;
+    padding:10px 5px;
+    background-color:#e6e8ed;
+    cursor:pointer;
+}
+
+.linktalker-submit-button:hover{
+    background-color:#dee0e5;
+}

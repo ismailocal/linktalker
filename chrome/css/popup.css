@@ -1,0 +1,99 @@
+body{
+    width:350px;
+    margin:0;
+}
+
+*{
+    outline: none;
+}
+
+.linktalker{
+    text-align: center;
+    width:100%;
+    height:100%;
+}
+
+.linktalker-header{
+    padding:10px;
+    background-color:#f2f2f2;
+}
+
+.linktalker-logo{
+    font-weight:bold;
+    font-size:20px;
+}
+
+.linktalker-profile-username{
+    padding:0 0 10px 0;
+    font-size:15px;
+}
+
+.linktalker-profile-avatar img{
+    border-radius:100%;
+}
+
+.linktalker-profile-container{
+    padding:10px;
+}
+
+.linktalker-input{
+    padding:7px;
+    font-size:13px;
+    width:80%;
+}
+
+label.switch{
+    margin-left:4.25rem !important;
+}
+
+.linktalker-submit{
+    width:80%;
+}
+
+.linktalker-form-header{
+    padding:10px 0;
+    font-size:15px;
+}
+
+form{
+    background:none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.linktalker-notice{
+
+}
+
+.linktalker-notice-line{
+    border-top:1px dotted #ccc;
+    font-size:13px;
+    padding:10px 10px;
+}
+
+.linktalker-notice-danger{
+    color:#db4848;
+}
+
+.linktalker-button{
+    border-top:1px dotted #ccc;
+}
+
+.linktalker-loading-bar{
+    position:absolute;
+    left:10px;
+    top:10px;
+}
+
+.linktalker-links{
+    margin-bottom:10px;
+}
+
+.linktalker-link{
+    font-size:13px;
+}
+
+.linktalker-line{
+    padding:5px 0;
+}
