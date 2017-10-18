@@ -1,7 +1,7 @@
 <script type="text/x-tmpl" id="linktalker-posts">
-    <div class="linktalker-posts" style="top:{%=o.position.top%};left:{%=o.position.left%}">
+    <div id="linktalker-posts-{%=o.id%}" class="linktalker-posts" style="top:{%=o.position.top%};left:{%=o.position.left%}">
         {% o.posts.map(function(post){ %}
-        <div class="linktalker-post linktalker-clearfix">
+        <div id="linktalker-post-{%=post.id%}" class="linktalker-post linktalker-clearfix">
             <div class="linktalker-post-left">
                 <img src="{%=post.user.avatar%}"></img>
             </div>

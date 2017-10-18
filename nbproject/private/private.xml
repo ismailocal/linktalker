@@ -3,25 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="LinkTalker">
-            <file>file:/var/www/linktalker/chrome/js/io/chrome.js</file>
-            <file>file:/var/www/linktalker/chrome/js/io/storage.js</file>
-            <file>file:/var/www/linktalker/chrome/js/io/api.js</file>
+            <file>file:/var/www/linktalker/chrome/css/reset.css</file>
             <file>file:/var/www/linktalker/chrome/js/content.js</file>
-            <file>file:/var/www/linktalker/chrome/html/post/post-new.html</file>
             <file>file:/var/www/linktalker/chrome/js/background.js</file>
-            <file>file:/var/www/linktalker/chrome/css/content.css</file>
+            <file>file:/var/www/linktalker/chrome/css/posts.css</file>
+            <file>file:/var/www/linktalker/chrome/html/post/tmpl/linktalker.html</file>
+            <file>file:/var/www/linktalker/chrome/html/post/tmpl/pits.html</file>
             <file>file:/var/www/linktalker/chrome/js/io/template.js</file>
-            <file>file:/var/www/linktalker/chrome/js/app.js</file>
             <file>file:/var/www/linktalker/chrome/html/popup.html</file>
-            <file>file:/var/www/linktalker/chrome/js/io/event.js</file>
-            <file>file:/var/www/linktalker/chrome/html/post/post.html</file>
-            <file>file:/var/www/linktalker/chrome/html/post/posts.html</file>
-            <file>file:/var/www/linktalker/chrome/js/io/io.js</file>
+            <file>file:/var/www/linktalker/chrome/css/pits.css</file>
             <file>file:/var/www/linktalker/chrome/html/post/tmpl/posts.html</file>
             <file>file:/var/www/linktalker/chrome/manifest.json</file>
-            <file>file:/var/www/linktalker/chrome/js/event/userEvent.js</file>
-            <file>file:/var/www/linktalker/chrome/js/event/commonEvent.js</file>
             <file>file:/var/www/linktalker/chrome/js/popup.js</file>
+            <file>file:/var/www/linktalker/chrome/html/post/tmpl/post-new.html</file>
         </group>
     </open-files>
 </project-private>

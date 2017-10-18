@@ -1,9 +1,9 @@
 <?php
 
-class User extends Migration
-{
-    public function up()  {
-        $this->schema->create('user', function(Illuminate\Database\Schema\Blueprint $table){
+class User extends Migration {
+
+    public function up() {
+        $this->schema->create('user', function(Illuminate\Database\Schema\Blueprint $table) {
             // Auto-increment id
             $table->increments('id');
             $table->string('username');
@@ -14,7 +14,8 @@ class User extends Migration
         });
     }
 
-    public function down()  {
+    public function down() {
         $this->schema->drop('user');
     }
+
 }

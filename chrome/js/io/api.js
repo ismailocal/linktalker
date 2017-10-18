@@ -11,7 +11,7 @@ app.controller('api')
 
             self.get = function (url, success, error) {
                 loading.start();
-                $.get(config.apiUrl + url, function (response) {
+                $.get(config.apiUrl + url +'/', function (response) {
                     if (response.error) {
                         commonEvent.emit('notice', response);
                     } else {
