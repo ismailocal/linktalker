@@ -25,9 +25,5 @@ class Pit extends \Illuminate\Database\Eloquent\Model {
     public function users() {
         return $this->belongsToMany(\Model\User::class, 'post', 'pit_id', 'user_id');
     }
-    
-    public function user() {
-        return $this->belongsToMany(\Model\User::class, 'post', 'pit_id', 'user_id')->limit(1);
-    }
 
 }

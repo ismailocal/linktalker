@@ -35,56 +35,64 @@ app
 
                 chrome.get('user', function (user) {
 
-                    template.get('post/tmpl/pits', function () {
+                    template.get('post/tmpl/post-new', function () {
 
-                        api.get('pits', function (pits) {
+                        template.get('post/tmpl/pits', function () {
 
-                            template.append('.linktalker', 'linktalker-pits', {
-                                pits: pits
-                            });
+                            api.get('pits/', function (pits) {
 
-                            template.get('post/tmpl/posts', function () {
-                                $('.linktalker-pit').on('click', function (e) {
+                                template.append('.linktalker', 'linktalker-pits', {
+                                    pits: pits
+                                });
 
-                                    $('.linktalker-posts').hide();
+                                template.get('post/tmpl/posts', function () {
+                                    $('.linktalker-pit').on('click', function (e) {
 
-                                    var pitID = $(this).attr('id').split('-').pop();
-                                    if ($('#linktalker-posts-' + pitID).length) {
-                                        return $('#linktalker-posts-' + pitID).show();
-                                    }
+                                        $('.linktalker-posts').hide();
 
-                                    var top = $(this).css('top').replace('px', '');
-                                    var left = $(this).css('left').replace('px', '');
-                                    template.append('.linktalker-pits', 'linktalker-posts', {
-                                        id: 1,
-                                        position: {
-                                            top: (Number(top) - 10) + 'px',
-                                            left: (Number(left) - 10) + 'px'
-                                        },
-                                        posts: [{
-                                                id: 1,
-                                                user: {
-                                                    username: 'ismailocal',
-                                                    avatar: user.avatar
-                                                },
-                                                content: 'This is the default welcome page used to test the correct operation of the Apache2 server after installation on Ubuntu systems. It is based on the equivalent page on Debian, from which the Ubuntu Apache packaging is derived.'
-                                            }, {
-                                                id: 2,
-                                                user: {
-                                                    username: 'matthomes',
-                                                    avatar: 'https://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm'
-                                                },
-                                                content: 'If you are a normal user of this web site and don\'t know what this page is about, this probably means that the site is currently unavailable due to maintenance. If the problem persists, please contact the site\'s administrator.'
-                                            }],
-                                        user: user
+                                        var pitID = $(this).attr('data-pit-id');
+
+                                        if ($('.linktalker-posts[data-pit-id="' + pitID + '"]').length) {
+                                            return $('.linktalker-posts[data-pit-id="' + pitID + '"]').show();
+                                        }
+
+                                        api.get('pit/' + pitID, function (pit) {
+                                            self.pit = {
+                                                id: pit.id,
+                                                top: pit.top,
+                                                left: pit.left,
+                                            };
+                                            template.append('.linktalker-pits', 'linktalker-posts', {
+                                                pit: pit,
+                                                user: user,
+                                                content: ''
+                                            });
+                                        });
                                     });
                                 });
                             });
                         });
-                    });
 
-                    template.get('post/tmpl/post-new', function () {
                         $('body').on('click', function (e) {
+                            if ($(e.target).closest('.linktalker').length > 0) {
+                                if ($(e.target).hasClass('linktalker-submit-button')) {
+                                    var pit = $(e.target).attr('data-pit');
+                                    if (!pit === 'true') {
+                                        var linktalkerNew = $(e.target).closest('.linktalker-new');
+                                    }
+                                    var linktalkerPostNew = $(e.target).closest('.linktalker-post-new');
+
+                                    var content = linktalkerPostNew.find('.linktalker-post-body').text();
+                                    api.post('pit/' + self.pit.id, {
+                                        pit: self.pit,
+                                        content: content,
+                                        token: user.token
+                                    }, function (pit) {
+
+                                    });
+                                }
+                                return false;
+                            }
                             e.preventDefault();
 
                             $('.linktalker-posts').hide();
@@ -94,18 +102,17 @@ app
                             var linktalkerPostNewHtml = linktalkerPostNew.text() || '';
                             linktalkerNew.remove();
 
+                            self.pit = {
+                                id: '',
+                                top: e.clientY - 30,
+                                left: e.clientX - 30
+                            };
+
                             template.append('.linktalker', 'linktalker-post-new', {
-                                position: {
-                                    top: e.clientY - 30 + 'px',
-                                    left: e.clientX - 30 + 'px'
-                                },
+                                pit: self.pit,
                                 user: user,
                                 content: linktalkerPostNewHtml
                             });
-                        });
-
-                        $('body').on('click', '.linktalker', function (e) {
-                            e.stopPropagation();
                         });
                     });
                 });

@@ -1,5 +1,5 @@
 <script type="text/x-tmpl" id="linktalker-post-new">
-    <div class="linktalker-new" style="top:{%=o.position.top%};left:{%=o.position.left%}">
+    <div class="linktalker-new" style="top:{%=o.pit.top%}px;left:{%=o.pit.left%}px">
         <div class="linktalker-posts">
             <div class="linktalker-post linktalker-post-new linktalker-clearfix">
                 <div class="linktalker-post-left">
@@ -8,7 +8,6 @@
                 <div class="linktalker-post-right">
                     <div class="linktalker-post-top linktalker-clearfix">{%=o.user.username%} <span class="linktalker-post-time">now</span></div>
                     <div class="linktalker-post-body" contenteditable="true" data-placeholder="Your post here...">{%=o.content%}</div>
-                    </div>
                 </div>
                 <button class="linktalker-submit-button">Send</button>
             </div>

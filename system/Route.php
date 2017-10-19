@@ -84,20 +84,57 @@ $app->group('/user', function () {
 $app->group('/pits', function () {
     $this->get('/', function (Request $request, Response $response) {
 
-        $pits = \Model\Pit::with('user')->get();
-        $pits->transform(function($pit) {
-            $user = $pit->user->first();
-            return [
-                'id' => $pit->id,
-                'left' => $pit->left,
-                'top' => $pit->top,
-                'user' => [
-                    'id' => $user->id,
-                    'avatar' => $user->avatar,
-                ]
-            ];
+        $pits = \Model\Pit::with('users')->get();
+
+        $preparedPits = collect();
+        $pits->each(function($pit) use($preparedPits) {
+            $user = $pit->users->first();
+            if ($user) {
+                $preparedPits->push([
+                    'id' => $pit->id,
+                    'left' => $pit->left,
+                    'top' => $pit->top,
+                    'user' => [
+                        'id' => $user->id,
+                        'avatar' => $user->avatar,
+                    ]
+                ]);
+            }
         });
 
-        return $response->withJson($pits->toArray());
+        return $response->withJson($preparedPits->toArray());
+    });
+});
+
+$app->group('/pit', function () {
+    $this->get('/{pitID}', function (Request $request, Response $response, $args) {
+
+        $pitID = (int) $args['pitID'];
+
+        $pit = \Model\Pit::with('posts.user')->find($pitID);
+
+        return $response->withJson($pit->toArray());
+    });
+
+    $this->post('/', function (Request $request, Response $response, $args) {
+
+        $requestPit = (object) $request->getParam('pit');
+        $content = $request->getParam('content');
+
+        if ($requestPit->id) {
+            $pit = \Model\Pit::find($requestPit->id);
+        } else {
+            $pit = new \Model\Pit;
+            $pit->left = $requestPit->left;
+            $pit->top = $requestPit->top;
+            $pit->save();
+        }
+
+        $pit->users()->attach(2, [
+            'pit_id' => $pit->id,
+            'content' => $content
+        ]);
+
+        return $response->withJson($pit->toArray());
     });
 });

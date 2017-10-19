@@ -1,7 +1,7 @@
 <script type="text/x-tmpl" id="linktalker-posts">
-    <div id="linktalker-posts-{%=o.id%}" class="linktalker-posts" style="top:{%=o.position.top%};left:{%=o.position.left%}">
-        {% o.posts.map(function(post){ %}
-        <div id="linktalker-post-{%=post.id%}" class="linktalker-post linktalker-clearfix">
+    <div data-pit-id="{%=o.pit.id%}" class="linktalker-posts" style="top:{%=o.pit.top - 10%}px;left:{%=o.pit.left - 10%}px">
+        {% o.pit.posts.map(function(post){ %}
+        <div data-post-id="{%=post.id%}" class="linktalker-post linktalker-clearfix">
             <div class="linktalker-post-left">
                 <img src="{%=post.user.avatar%}"></img>
             </div>
@@ -20,7 +20,7 @@
                 <div class="linktalker-post-body" contenteditable="true" data-placeholder="Your post here...">{%=o.content%}</div>
                 </div>
             </div>
-            <button class="linktalker-submit-button">Send</button>
+            <button class="linktalker-submit-button" data-pit="true">Send</button>
         </div>
     </div>
 </script>

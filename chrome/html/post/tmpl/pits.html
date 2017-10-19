@@ -1,7 +1,7 @@
 <script type="text/x-tmpl" id="linktalker-pits">
     <div class="linktalker-pits">
         {% o.pits.map(function(pit){ %}
-            <div id="linktalker-pit-{%=pit.id%}" class="linktalker-pit" style="top:{%=pit.top%}px;left:{%=pit.left%}px">
+            <div data-pit-id="{%=pit.id%}" class="linktalker-pit" style="top:{%=pit.top%}px;left:{%=pit.left%}px">
                 <img src="{%=pit.user.avatar%}"></img>
             </div>
         {% }); %}
